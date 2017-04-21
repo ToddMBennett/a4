@@ -14,17 +14,17 @@ class CalcController extends Controller
 
         // Backend validation
         // Had to create unique validate method as 'this->validate' was throwing errors
-        $validator = Validator::make($request->all(), [
-            'customers' => 'integer|min:2',
-            'amount' => 'numeric|min:10',
-            'service' => 'numeric',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect('/')
-                        ->withErrors($validator)
-                        ->withInput();
-        }
+        // $validator = Validator::make($request->all(), [
+        //     'customers' => 'integer|min:2',
+        //     'amount' => 'numeric|min:10',
+        //     'service' => 'numeric',
+        // ]);
+        //
+        // if ($validator->fails()) {
+        //     return redirect('/')
+        //                 ->withErrors($validator)
+        //                 ->withInput();
+        // }
 
         // Values
         $customers = (isset($_GET['customers'])) ? $_GET['customers'] : '';
