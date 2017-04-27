@@ -53,7 +53,7 @@ class CalcController extends Controller
         }
 
         // Allows variables to be used in view templates
-        return view('layouts.master')->with([
+        return view('welcome')->with([
             'calculate' => $calculate,
             'customers' => $customers,
             'amount' => $amount,
