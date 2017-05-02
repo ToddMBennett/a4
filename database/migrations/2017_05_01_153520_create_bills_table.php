@@ -13,7 +13,7 @@ class CreateBillsTable extends Migration
      */
      public function up()
      {
-         Schema::create('books', function (Blueprint $table) {
+         Schema::create('bills', function (Blueprint $table) {
 
          		# Increments method will make a Primary, Auto-Incrementing field.
          		# Most tables start off this way
@@ -29,7 +29,7 @@ class CreateBillsTable extends Migration
          		$table->date('date');
          		$table->float('each_paid');
          		$table->integer('amount');
-             $table->integer('customers');
+            $table->integer('customers');
 
          		# FYI: We're skipping the 'tags' field for now; more on that later.
 
@@ -43,6 +43,6 @@ class CreateBillsTable extends Migration
       */
      public function down()
      {
- 	       Schema::drop('books');
+ 	       Schema::drop('bills');
      }
  }
