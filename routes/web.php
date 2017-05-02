@@ -2,6 +2,7 @@
 
 Route::get('/','CalcController@welcome');
 Route::get('/calculate', 'CalcController@calculate');
+Route::get('/show', 'CalcController@showAll');
 
 if(config('app.env') == 'local') {
   Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
