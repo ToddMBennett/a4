@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Welcome Page
+    Calculate Page
 @endsection
 
 @section('content')
@@ -12,7 +12,8 @@
 
 			<div id='billSplitter'>
 			{{-- Form creation and PHP request method GET --}}
-			<form method='GET' action='/'>
+			<form method='POST' action='/calculate'>
+          {{ csrf_field() }}
 
 					{{-- <!-- Text input for number of paying customers --}}
 					<div class='formInput'>
@@ -80,6 +81,10 @@
 					<div class='btn'>
 							<button id="btn" type='button' class='alert alert-success'>{{ $calculate }}</button>
 					</div>
+
+          {{-- Save button --}}
+          <label for='save'></label>
+              <input type='submit' class='btn btn-info btn-lg' value='Save Bill' id='save'><br>
 
 			</form>
 			</div>
