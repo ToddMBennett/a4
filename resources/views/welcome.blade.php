@@ -24,7 +24,7 @@
 					@if($errors->get('customers'))
 							<ul>
 									@foreach($errors->get('customers') as $error)
-											<li>{{ $error }}</li>
+											<li class='error'>{{ $error }}</li>
 									@endforeach
 							</ul>
 					@endif
@@ -39,7 +39,7 @@
 					@if($errors->get('amount'))
 							<ul>
 									@foreach($errors->get('amount') as $error)
-											<li>{{ $error }}</li>
+											<li class='error'>{{ $error }}</li>
 									@endforeach
 							</ul>
 					@endif
@@ -58,7 +58,16 @@
 					</div>
 
 					{{-- Alert box if user doesn't select service --}}
-					@if ($_GET)
+          @if($errors->get('service'))
+							<ul>
+									@foreach($errors->get('service') as $error)
+											<li class='error'>{{ $error }}</li>
+									@endforeach
+							</ul>
+					@endif
+
+          {{-- Displays tipping amount --}}
+          @if ($_GET)
 							<div class='alert {{ $alertType }}'>
 									{{ $results }}
 							</div>

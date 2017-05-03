@@ -24,8 +24,8 @@ input:required:focus {
   outline: none;
 }
 
-.alertErr {
-  color: #a94442;
+.error {
+  color: red;
 }
 
 #sbmt {

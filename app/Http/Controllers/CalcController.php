@@ -27,6 +27,29 @@ class CalcController extends Controller
         //                 ->withInput();
         // }
 
+        # Validate the request data
+        $this->validate($request, [
+            'customers' => 'integer|min:2',
+            'amount' => 'numeric|min:10',
+            'service' => 'numeric',
+        ]);
+
+        # Note: If validation fails, it will redirect the visitor back to the form page
+        # and none of the code that follows will execute.
+
+        $customers = $request->input('customers');
+        $amount = $request->input('amount');
+        $service = $request->input('service');
+
+        #
+        #
+        # [...Code will eventually go here to actually save this book to a database...]
+        #
+        #
+
+        # Redirect the user to the page to view the book
+        // return redirect('/books/'.$title);
+
         // Values
         $customers = (isset($_GET['customers'])) ? $_GET['customers'] : '';
         $roundUp = (isset($_GET['roundUp'])) ? $_GET['roundUp'] : '';
@@ -34,12 +57,8 @@ class CalcController extends Controller
         $service = (isset($_GET['service'])) ? $_GET['service'] : '';
         $calculate = null;
 
-        // Alerts user if dropdown selection isn't chosen
-        if($service == 'tipping') {
-            $alertType = 'alert-danger';
-            $results = 'No tip was added. Please choose the level of service.';
-        }
-        else {
+        // Displays tipping amount
+        if($service != 'tipping') {
             $alertType = 'alert-info';
             $results = 'A tip of '.$service.'% has been added.';
         }
