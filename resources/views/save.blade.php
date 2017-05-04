@@ -1,31 +1,29 @@
 @extends('layouts.master')
 
 @section('title')
-    Calculate Page
+    Welcome Page
 @endsection
 
 @section('content')
 	{{-- Contain the parameters --}}
-	<div class='container-fluid'>
-			<h1>Bill Splitter</h1>
+			<h1>Save Bill</h1>
 			<hr />
 
 			<div id='billSplitter'>
 			{{-- Form creation and PHP request method GET --}}
-			<form method='POST' action='/calculate'>
-          {{ csrf_field() }}
+			<form method='GET' action='/'>
 
 					{{-- <!-- Text input for number of paying customers --}}
 					<div class='formInput'>
 							<label for='split'>Split how many ways? </label>
-							<input type='text' name='customers' id='split' size='16' placeholder='Paying customers' required='required' value='{{ old($customers or '') }}'>
+							<input type='text' name='customers' id='split' size='16' placeholder='Paying customers' required='required' value='{{ $customers or '' }}'>
 					</div>
 
 					{{-- Displaying errors after validation check --}}
 					@if($errors->get('customers'))
 							<ul>
 									@foreach($errors->get('customers') as $error)
-											<li>{{ $error }}</li>
+											<li class='error'>{{ $error }}</li>
 									@endforeach
 							</ul>
 					@endif
@@ -40,7 +38,7 @@
 					@if($errors->get('amount'))
 							<ul>
 									@foreach($errors->get('amount') as $error)
-											<li>{{ $error }}</li>
+											<li class='error'>{{ $error }}</li>
 									@endforeach
 							</ul>
 					@endif
@@ -59,7 +57,16 @@
 					</div>
 
 					{{-- Alert box if user doesn't select service --}}
-					@if ($_GET)
+          @if($errors->get('service'))
+							<ul>
+									@foreach($errors->get('service') as $error)
+											<li class='error'>{{ $error }}</li>
+									@endforeach
+							</ul>
+					@endif
+
+          {{-- Displays tipping amount --}}
+          @if ($_GET)
 							<div class='alert {{ $alertType }}'>
 									{{ $results }}
 							</div>
@@ -77,10 +84,13 @@
 					<label for='sbmt'></label>
 							<input type='submit' class='btn btn-primary btn-lg' value='Calculate' id='sbmt'><br>
 
-					{{-- Alert button - showing amount of what each customer owes --}}
-					<div class='btn'>
-							<button id="btn" type='button' class='alert alert-success'>{{ $calculate }}</button>
-					</div>
+          {{-- Displays how much each person should pay --}}
+          @if ($_GET)
+              <div class='alert {{ $alertType }}'>
+                  {{ $calculate }}
+              </div>
+          @endif
+          <br />
 
           {{-- Save button --}}
           <label for='save'></label>
@@ -88,5 +98,4 @@
 
 			</form>
 			</div>
-	</div>
 @endsection

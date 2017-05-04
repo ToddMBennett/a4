@@ -1,5 +1,4 @@
 .container-fluid {
-  text-align: center;
   border: 3px gray dotted;
   padding: 15px 30px;
   max-width: 550px;
@@ -10,6 +9,10 @@
   text-align: left;
 }
 
+h1 {
+  margin: 40px 0 0 20px;
+  text-align: left;
+}
 
 label {
   font-size: 17px;

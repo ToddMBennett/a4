@@ -9,43 +9,23 @@ class CalcController extends Controller
 {
     /*
     * GET
-    * /show
+    * /welcome
     */
     public function welcome(Request $request) {
 
-        // Backend validation
-        // Had to create unique validate method as 'this->validate' was throwing errors
-        // $validator = Validator::make($request->all(), [
-        //     'customers' => 'integer|min:2',
-        //     'amount' => 'numeric|min:10',
-        //     'service' => 'numeric',
-        // ]);
-        //
-        // if ($validator->fails()) {
-        //     return redirect('/')
-        //                 ->withErrors($validator)
-        //                 ->withInput();
-        // }
-
-        # Validate the request data
+        // Validate the request data
         $this->validate($request, [
             'customers' => 'integer|min:2',
             'amount' => 'numeric|min:10',
             'service' => 'numeric',
         ]);
 
-        # Note: If validation fails, it will redirect the visitor back to the form page
-        # and none of the code that follows will execute.
 
+        // Note: If validation fails, it will redirect the visitor back to the form page
+        // and none of the code that follows will execute.
         $customers = $request->input('customers');
         $amount = $request->input('amount');
         $service = $request->input('service');
-
-        #
-        #
-        # [...Code will eventually go here to actually save this book to a database...]
-        #
-        #
 
         # Redirect the user to the page to view the book
         // return redirect('/books/'.$title);
@@ -72,6 +52,10 @@ class CalcController extends Controller
             }
         }
 
+        if($calculate != null) {
+            $alertType = 'alert-success';
+        }
+
         // Allows variables to be used in view templates
         return view('welcome')->with([
             'calculate' => $calculate,
@@ -88,7 +72,7 @@ class CalcController extends Controller
     * POST
     * /calculate
     */
-    public function calculate(Request $request) {
+    public function save(Request $request) {
 
         // Backend validation
         // Had to create unique validate method as 'this->validate' was throwing errors
@@ -131,7 +115,7 @@ class CalcController extends Controller
         }
 
         // Allows variables to be used in view templates
-        return view('calculate')->with([
+        return view('save')->with([
             'calculate' => $calculate,
             'customers' => $customers,
             'amount' => $amount,
@@ -142,12 +126,34 @@ class CalcController extends Controller
         ]);
     }
 
-    public function showAll() {
+    public function add(Request $request) {
+
+        // Validate the request data
+        $this->validate($request, [
+            'customers' => 'integer|min:2',
+            'amount' => 'numeric|min:10',
+            'service' => 'numeric',
+            'restaurant' => 'alpha',
+        ]);
 
         $bills = Bill::all();
-        return view('bills.show')->with([
+        return view('bills.add')->withInput([
             'bills' => $bills,
         ]);
     }
+    //
+    // public function edit() {
+    //
+    //     return view('bills.edit')->with([
+    //         'bills' => $bills,
+    //     ]);
+    // }
+    //
+    // public function delete() {
+    //
+    //     return view('bills.delete')->with([
+    //         'bills' => $bills,
+    //     ]);
+    // }
 
 }

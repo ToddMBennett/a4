@@ -6,8 +6,7 @@
 
 @section('content')
 	{{-- Contain the parameters --}}
-	<div class='container-fluid'>
-			<h1>Bill Splitter</h1>
+			<h1>Bill Split &amp; Track</h1>
 			<hr />
 
 			<div id='billSplitter'>
@@ -85,12 +84,13 @@
 					<label for='sbmt'></label>
 							<input type='submit' class='btn btn-primary btn-lg' value='Calculate' id='sbmt'><br>
 
-					{{-- Alert button - showing amount of what each customer owes --}}
-					<div class='btn'>
-							<button id="btn" type='button' class='alert alert-success'>{{ $calculate }}</button>
-					</div>
+          {{-- Displays how much each person should pay --}}
+          @if ($_GET)
+              <div class='alert {{ $alertType }}'>
+                  {{ $calculate }}
+              </div>
+          @endif
 
 			</form>
 			</div>
-	</div>
 @endsection
