@@ -91,6 +91,12 @@
               </div>
           @endif
 
+          {{-- Add Bill button --}}
+          @if ($_GET)
+          <label for='add'></label>
+              <input type='submit' class='btn btn-success btn-lg' value='Add Bill' id='add'><br>
+          @endif
+
 			</form>
 			</div>
 @endsection

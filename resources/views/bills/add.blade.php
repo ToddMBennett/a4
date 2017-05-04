@@ -8,8 +8,7 @@
   <h1>Add bill</h1>
   <hr />
 
-  <form method='POST' action='/bills/new'>
-      {{ csrf_field() }}
+  <form method='GET' action='/save'>
 
       <div class='formInput'>
           <label for='restaurant'>Restaurant</label>
@@ -27,11 +26,12 @@
           <label for='tab'>Total including tip? $</label>
           <input type='text' name='amount' id='tab' size='16' placeholder='Enter total bill' required='required' value='{{ $calculate or '' }}'>
       </div>
+      <hr />
 
-
+      {{-- Add Bill button --}}
+      <label for='add'></label>
+          <input type='submit' class='btn btn-primary btn-lg' value='Add Bill' id='add'><br>
 
   </form>
 
-  {{-- @foreach($bills as $bill)
-      <h2>{{ $bill->restaurant }}</h2> --}}
 @endsection

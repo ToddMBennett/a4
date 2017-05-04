@@ -18,7 +18,7 @@
     <div class='container-fluid'>
         <nav class="navbar navbar-default">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li><a href="/search">Search</a></li>
                     <li><a href="/add">Add</a></li>
                     <li><a href="/edit">Edit</a></li>
