@@ -1,8 +1,18 @@
 <?php
 
 Route::get('/','CalcController@welcome');
+
 Route::get('/add','CalcController@add');
-Route::get('/save','CalcController@save');
+Route::post('/add', 'CalcController@storeAdd');
+
+// Route::get('/save','CalcController@save');
+//
+// Route::get('/edit', 'CalcController@edit');
+//
+// Route::get('/search', 'CalcController@search');
+//
+// Route::get('/delete', 'CalcController@delete');
+
 
 if(config('app.env') == 'local') {
   Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');

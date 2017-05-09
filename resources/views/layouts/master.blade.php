@@ -26,6 +26,8 @@
                 </ul>
         </nav>
       @yield('content')
+      <hr />
+      <footer>Copyright &copy; Split and Track</footer>
     </div>
 </body>
 </html>

@@ -20,8 +20,7 @@ class BillsTableSeeder extends Seeder
              'comments' => 'Good pancakes',
              'date' => '2016-03-30',
              'customers' => 4,
-             'amount' => 100,
-             'each_paid' => 25,
+             'calculate' => 25,
          ]);
 
          Bill::insert([
@@ -31,8 +30,7 @@ class BillsTableSeeder extends Seeder
              'comments' => 'T-bell is always so good to me',
              'date' => '1999-01-14',
              'customers' => 7,
-             'amount' => 50,
-             'each_paid' => 7,
+             'calculate' => 7,
          ]);
 
          Bill::insert([
@@ -42,8 +40,7 @@ class BillsTableSeeder extends Seeder
              'comments' => 'Great environment and good food',
              'date' => '2015-02-20',
              'customers' => 2,
-             'amount' => 60,
-             'each_paid' => 30,
+             'calculate' => 30,
          ]);
 
          Bill::insert([
@@ -53,8 +50,7 @@ class BillsTableSeeder extends Seeder
              'comments' => 'In pain and sitting by the toilet',
              'date' => '2016-06-23',
              'customers' => 5,
-             'amount' => 25,
-             'each_paid' => 5,
+             'calculate' => 5,
          ]);
 
          Bill::insert([
@@ -64,8 +60,7 @@ class BillsTableSeeder extends Seeder
              'comments' => 'Great nuggets with a lot of tasty fries',
              'date' => '2015-10-30',
              'customers' => 6,
-             'amount' => 30,
-             'each_paid' => 5,
+             'calculate' => 5,
          ]);
 
          Bill::insert([
@@ -75,8 +70,7 @@ class BillsTableSeeder extends Seeder
              'comments' => 'It was not as good as I expected. Soggy burger',
              'date' => '2017-03-30',
              'customers' => 3,
-             'amount' => 12,
-             'each_paid' => 4,
+             'calculate' => 4,
          ]);
      }
 }

@@ -4,8 +4,12 @@
     Edit Bill
 @endsection
 
+
 @section('content')
-  @foreach($bills as $bill)
-      <h2>{{ $bill->restaurant }}</h2>
-  @endforeach
+      <h1>Edit Bill</h1>
+      <hr />
+      <div class='formInput'>
+          <label for='split'>Edit bill </label>
+          <input type='text' name='search' id='search' size='16' placeholder='Restaurant name' required='required' value='{{ $edit or '' }}'>
+      </div>
 @endsection

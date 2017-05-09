@@ -5,7 +5,8 @@
 @endsection
 
 @section('content')
-  @foreach($bills as $bill)
-      <h2>{{ $bill->restaurant }}</h2>
-  @endforeach
+    <div class='formInput'>
+        <label for='split'>Delete bill </label>
+        <input type='text' name='search' id='search' size='16' placeholder='Restaurant name' required='required' value='{{ $delete or '' }}'>
+    </div>
 @endsection

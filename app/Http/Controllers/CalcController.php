@@ -72,11 +72,11 @@ class CalcController extends Controller
     * POST
     * /calculate
     */
-    public function save(Request $request) {
-
-      return redirect('/save');
-
-    }
+    // public function save(Request $request) {
+    //
+    //   return redirect('/save');
+    //
+    // }
 
     /*
     * GET
@@ -84,42 +84,79 @@ class CalcController extends Controller
     */
     public function add(Request $request) {
 
+        return view('bills.add');
+
+    }
+
+    /*
+    * POST
+    * /storeAdd
+    */
+    public function storeAdd(Request $request) {
+
         // Validate the request data
         $this->validate($request, [
-            'restaurant' => 'alpha',
+            'restaurant' => 'alpha_num',
             'customers' => 'integer|min:2',
-            'amount' => 'numeric|min:10',
+            'amount' => 'numeric|min:5',
             'service' => 'numeric',
+            'comments' => 'alpha_num',
+            'date' => 'date'
         ]);
 
         // Note: If validation fails, it will redirect the visitor back to the form page
         // and none of the code that follows will execute.
-        $customers = $request->input('customers');
-        $amount = $request->input('amount');
-        $service = $request->input('service');
-        $restaurant = $request->input('restaurant');
+        $bill = new Bill();
+        $bill->restaurant = $request->input('restaurant');
+        $bill->customers = $request->input('customers');
+        $bill->calculate = $request->input('calculate');
+        $bill->date = $request->input('date');
+        $bill->comments = $request->input('comments');
+        $bill->save();
 
-        # Redirect the user to the page to view the book
         // return redirect('/books/'.$title);
+        // return redirect('/'.$request->restaurant);
+        // $bills = Bill::all();
+        return view('bills.add');
+        //     'bills' => $bills,
+        // ]);
+    }
+
+    /*
+    * POST
+    * /edit
+    */
+    public function edit() {
 
         $bills = Bill::all();
-        return view('bills.add')->withInput([
+        return view('bills.edit')->with([
             'bills' => $bills,
         ]);
     }
-    //
-    // public function edit() {
-    //
-    //     return view('bills.edit')->with([
-    //         'bills' => $bills,
-    //     ]);
-    // }
-    //
-    // public function delete() {
-    //
-    //     return view('bills.delete')->with([
-    //         'bills' => $bills,
-    //     ]);
-    // }
+
+    /*
+    * GET
+    * /search
+    */
+    public function search() {
+
+        $bills = Bill::all();
+        return view('bills.search')->with([
+            'bills' => $bills,
+        ]);
+    }
+
+    /*
+    * POST
+    * /delete
+    */
+    public function delete() {
+
+
+        $bills = Bill::all();
+        return view('bills.delete')->with([
+            'bills' => $bills,
+        ]);
+    }
 
 }

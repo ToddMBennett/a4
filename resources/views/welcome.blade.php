@@ -5,7 +5,8 @@
 @endsection
 
 @section('content')
-	{{-- Contain the parameters --}}
+
+	    {{-- Title from body --}}
 			<h1>Bill Split &amp; Track</h1>
 			<hr />
 
@@ -98,5 +99,5 @@
           @endif
 
 			</form>
-			</div>
+
 @endsection

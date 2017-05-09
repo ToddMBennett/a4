@@ -27,8 +27,7 @@ class CreateBillsTable extends Migration
          		$table->string('restaurant');
          		$table->string('comments')->nullable();
          		$table->date('date');
-         		$table->float('each_paid');
-         		$table->float('amount');
+         		$table->float('calculate');
             $table->integer('customers');
 
          		# FYI: We're skipping the 'tags' field for now; more on that later.

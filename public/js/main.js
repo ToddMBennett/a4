@@ -1,3 +1,3 @@
-$('#add').click(function(){
-   window.location.replace=("/add");
-})
+document.getElementById("add").onclick = function () {
+    window.location.replace = ("/add");
+};
