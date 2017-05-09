@@ -27,9 +27,6 @@ class CalcController extends Controller
         $amount = $request->input('amount');
         $service = $request->input('service');
 
-        # Redirect the user to the page to view the book
-        // return redirect('/books/'.$title);
-
         // Values
         $customers = (isset($_GET['customers'])) ? $_GET['customers'] : '';
         $roundUp = (isset($_GET['roundUp'])) ? $_GET['roundUp'] : '';
@@ -69,14 +66,16 @@ class CalcController extends Controller
     }
 
     /*
-    * POST
-    * /calculate
+    * GET
+    * /search
     */
-    // public function save(Request $request) {
-    //
-    //   return redirect('/save');
-    //
-    // }
+    public function search() {
+
+        $bills = Bill::all();
+
+        return view('bills.search');
+
+    }
 
     /*
     * GET
@@ -114,16 +113,12 @@ class CalcController extends Controller
         $bill->comments = $request->input('comments');
         $bill->save();
 
-        // return redirect('/books/'.$title);
-        // return redirect('/'.$request->restaurant);
-        // $bills = Bill::all();
         return view('bills.add');
-        //     'bills' => $bills,
-        // ]);
+
     }
 
     /*
-    * POST
+    * GET
     * /edit
     */
     public function edit() {
@@ -135,13 +130,25 @@ class CalcController extends Controller
     }
 
     /*
-    * GET
-    * /search
+    * POST
+    * /edit
     */
-    public function search() {
+    public function storeEdit() {
 
         $bills = Bill::all();
-        return view('bills.search')->with([
+        return view('bills.edit')->with([
+            'bills' => $bills,
+        ]);
+    }
+
+    /*
+    * GET
+    * /delete
+    */
+    public function delete() {
+
+        $bills = Bill::all();
+        return view('bills.delete')->with([
             'bills' => $bills,
         ]);
     }
@@ -150,8 +157,7 @@ class CalcController extends Controller
     * POST
     * /delete
     */
-    public function delete() {
-
+    public function storeDelete() {
 
         $bills = Bill::all();
         return view('bills.delete')->with([

@@ -9,6 +9,7 @@
   <hr />
 
   <form method='POST' action='/add'.$restaurant>
+          {{ csrf_field() }}
 
       {{-- Text input for restaurant name --}}
       <div class='formInput'>

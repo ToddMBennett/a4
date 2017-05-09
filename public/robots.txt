@@ -1,2 +1,8 @@
 User-agent: *
-Disallow:
+Disallow: /
+
+User-Agent: Googlebot
+User-Agent: bingbot
+User-Agent: Slurp
+Allow: /person/
+Allow: /products/

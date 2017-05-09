@@ -2,17 +2,16 @@
 
 Route::get('/','CalcController@welcome');
 
+Route::get('/search', 'CalcController@search');
+
 Route::get('/add','CalcController@add');
 Route::post('/add', 'CalcController@storeAdd');
 
-// Route::get('/save','CalcController@save');
-//
-// Route::get('/edit', 'CalcController@edit');
-//
-// Route::get('/search', 'CalcController@search');
-//
-// Route::get('/delete', 'CalcController@delete');
+Route::get('/edit', 'CalcController@edit');
+Route::post('/edit', 'CalcController@storeEdit');
 
+Route::get('/delete', 'CalcController@delete');
+Route::post('/delete', 'CalcController@storeDelete');
 
 if(config('app.env') == 'local') {
   Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');

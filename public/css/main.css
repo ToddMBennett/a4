@@ -10,8 +10,7 @@
 }
 
 h1 {
-  margin: 40px 0 0 20px;
-  text-align: left;
+  text-align: center;
 }
 
 label {
@@ -29,8 +28,4 @@ input:required:focus {
 
 .error {
   color: red;
-}
-
-#sbmt {
-  margin: 20px 0 20px 0;
 }
