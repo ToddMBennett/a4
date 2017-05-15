@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Bill;
+use Session;
 
 class CalcController extends Controller
 {
@@ -73,6 +74,9 @@ class CalcController extends Controller
 
         $bills = Bill::all();
 
+        $search = '';
+        $searchResults = '';
+
         return view('bills.search');
 
     }
@@ -105,15 +109,19 @@ class CalcController extends Controller
 
         // Note: If validation fails, it will redirect the visitor back to the form page
         // and none of the code that follows will execute.
+
+        // Add bill
         $bill = new Bill();
-        $bill->restaurant = $request->input('restaurant');
-        $bill->customers = $request->input('customers');
-        $bill->calculate = $request->input('calculate');
-        $bill->date = $request->input('date');
-        $bill->comments = $request->input('comments');
+        $bill->restaurant = $request->restaurant;
+        $bill->customers = $request->customers;
+        $bill->calculate = $request->calculate;
+        $bill->date = $request->date;
+        $bill->comments = $request->comments;
         $bill->save();
 
-        return view('bills.add');
+        Session::flash('message', 'Your bill was added');
+
+        return redirect('welcome');
 
     }
 
@@ -133,12 +141,31 @@ class CalcController extends Controller
     * POST
     * /edit
     */
-    public function storeEdit() {
+    public function storeEdit(Request $request) {
 
-        $bills = Bill::all();
-        return view('bills.edit')->with([
-            'bills' => $bills,
-        ]);
+      // Validate the request data
+      $this->validate($request, [
+          'restaurant' => 'alpha_num',
+          'customers' => 'integer|min:2',
+          'amount' => 'numeric|min:5',
+          'service' => 'numeric',
+          'comments' => 'alpha_num',
+          'date' => 'date'
+      ]);
+
+        $bill = Bill::find($request->id);
+        # Edit bill in the database
+        $bill->restaurant = $request->restaurant;
+        $bill->customers = $request->customers;
+        $bill->calculate = $request->calculate;
+        $bill->date = $request->date;
+        $bill->comments = $request->comments;
+
+        $bill->save();
+
+        Session::flash('message', 'Your edits to '.$bill->title.' were saved.');
+
+        return redirect('/bills/edit/'.$request->id);
     }
 
     /*
@@ -157,12 +184,29 @@ class CalcController extends Controller
     * POST
     * /delete
     */
-    public function storeDelete() {
+    public function storeDelete(Request $request) {
 
-        $bills = Bill::all();
-        return view('bills.delete')->with([
-            'bills' => $bills,
-        ]);
+      // Validate the request data
+      $this->validate($request, [
+          'restaurant' => 'alpha_num',
+          'customers' => 'integer|min:2',
+          'amount' => 'numeric|min:5',
+          'service' => 'numeric',
+          'comments' => 'alpha_num',
+          'date' => 'date'
+      ], $messages);
+
+        $bill = Bill::find($request->id);
+        # Edit bill in the database
+        $bill->restaurant = $request->restaurant;
+        $bill->customers = $request->customers;
+        $bill->calculate = $request->calculate;
+        $bill->date = $request->date;
+        $bill->comments = $request->comments;
+
+        $bill->save();
+
+        Session::flash('message', 'You have deleted  '.$bill->restaurant);
+
+        return redirect('/bills/edit/'.$request->id);
     }
-
-}

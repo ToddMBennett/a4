@@ -8,10 +8,6 @@
 
       <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
 
-	    {{-- Title from body --}}
-			<h1>Bill Split &amp; Track</h1>
-			<hr />
-
 			{{-- Form creation and PHP request method GET --}}
 			<form method='GET' action='/'>
 

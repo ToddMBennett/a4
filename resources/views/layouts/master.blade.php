@@ -15,6 +15,15 @@
 </head>
 <body>
     <div class='container-fluid'>
+
+        @if(Session::get('message') != null))
+            <div class='message'>{{ Session::get('message') }}</div>
+        @endif
+
+        {{-- Title from body --}}
+  			<h1>Bill Split &amp; Track</h1>
+  			<hr />
+
         <nav class="navbar navbar-default">
                 <ul class="nav navbar-nav">
                     <li><a href="/">Home</a></li>
@@ -27,6 +36,7 @@
       @yield('content')
       <hr />
       <footer>Copyright &copy; Split and Track</footer>
+
     </div>
 </body>
 </html>

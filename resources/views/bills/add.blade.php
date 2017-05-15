@@ -5,10 +5,10 @@
 @endsection
 
 @section('content')
-  <h1>Add bill</h1>
+  <h3>Add bill</h3>
   <hr />
 
-  <form method='POST' action='/add'.$restaurant>
+  <form method='POST' action='/'>
           {{ csrf_field() }}
 
       {{-- Text input for restaurant name --}}
@@ -43,9 +43,8 @@
 
       {{-- Add Bill button --}}
       <label for='add'></label>
-          <input type='button' class='btn btn-primary btn-lg' value='Add Bill' id='add'><br>
+          <input type='button' class='btn btn-primary btn-lg' value='Add' id='add'><br>
 
-      <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
   </form>
 
 @endsection
