@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Restaurant;
+use App\Tag;
+
 class RestaurantTagTableSeeder extends Seeder
 {
     /**
