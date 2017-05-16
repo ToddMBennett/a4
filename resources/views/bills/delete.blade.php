@@ -16,7 +16,7 @@
         <div>
             <div class='formInput'>
                 <label for='delete'></label>
-                <input type='text' name='delete' id='search' size='10' placeholder='ID of bill' required='required' value='{{ $delete or '' }}'>
+                <input type='text' name='delete' id='search' size='10' placeholder='ID of bill' required='required' value='{{ $bill->id or '' }}'>
             </div>
 
             {{-- Delete button --}}

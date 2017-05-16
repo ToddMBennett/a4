@@ -74,9 +74,6 @@ class CalcController extends Controller
 
         $bills = Bill::all();
 
-        $search = '';
-        $searchResults = '';
-
         return view('bills.search');
 
     }
@@ -154,7 +151,7 @@ class CalcController extends Controller
       ]);
 
         $bill = Bill::find($request->id);
-        # Edit bill in the database
+        // Edit bill in the database
         $bill->restaurant = $request->restaurant;
         $bill->customers = $request->customers;
         $bill->calculate = $request->calculate;
@@ -172,12 +169,17 @@ class CalcController extends Controller
     * GET
     * /delete
     */
-    public function delete() {
+    public function delete($id) {
 
-        $bills = Bill::all();
-        return view('bills.delete')->with([
-            'bills' => $bills,
-        ]);
+        // Get the bill they're attempting to delete
+        $bill = Bill::find($id);
+
+
+        if(!$bill) {
+            Session::flash('message', 'Bill not found.');
+            return redirect('/');
+        }
+        return view('bills.delete')->with('bill', $bill);
     }
 
     /*
@@ -186,27 +188,20 @@ class CalcController extends Controller
     */
     public function storeDelete(Request $request) {
 
-      // Validate the request data
-      $this->validate($request, [
-          'restaurant' => 'alpha_num',
-          'customers' => 'integer|min:2',
-          'amount' => 'numeric|min:5',
-          'service' => 'numeric',
-          'comments' => 'alpha_num',
-          'date' => 'date'
-      ], $messages);
 
-        $bill = Bill::find($request->id);
-        # Edit bill in the database
-        $bill->restaurant = $request->restaurant;
-        $bill->customers = $request->customers;
-        $bill->calculate = $request->calculate;
-        $bill->date = $request->date;
-        $bill->comments = $request->comments;
+          // Get the bill to be deleted
+          $bill = Bill::find($request->id);
+          if(!$bill) {
+              Session::flash('message', 'Deletion failed; bill not found.');
+              return redirect('/');
+          }
+          // $bill->tags()->detach();
+          $bill->delete();
 
-        $bill->save();
-
-        Session::flash('message', 'You have deleted  '.$bill->restaurant);
-
-        return redirect('/bills/edit/'.$request->id);
+          // Finish
+          Session::flash('message', $bill->restaurant.' was deleted.');
+          return redirect('/');
     }
+
+
+}

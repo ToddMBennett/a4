@@ -27,20 +27,6 @@
 
         </div>
 
-        @if($search != null)
-            <h2>Results for query: <em>{{ $search }}</em></h2>
-
-            @if(count($searchResults) == 0)
-                No matches found.
-            @else
-                @foreach($searchResults as $restaurant => $bill)
-                    <div>
-                        <h3>{{ $restaurant }}</h3>
-                    </div>
-                @endforeach
-            @endif
-        @endif
-
     </form>
 
 @endsection
