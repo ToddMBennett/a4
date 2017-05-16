@@ -24,7 +24,7 @@ class CreateBillsTable extends Migration
          		$table->timestamps();
 
          		# The rest of the fields...
-         		$table->string('restaurant');
+         	// 	$table->string('restaurant');
          		$table->date('date');
          		$table->float('calculate');
             $table->integer('customers');
